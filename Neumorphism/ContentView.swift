@@ -56,15 +56,15 @@ struct SimpleButtonStyle: ButtonStyle{
                         
                     }
                     
-            }
-      )}
+                }
+        )}
     
 }
 
 struct DarkBackground<S: Shape>: View {
     var isHighlighted: Bool
     var shape: S
-
+    
     var body: some View {
         ZStack {
             if isHighlighted {
@@ -72,7 +72,7 @@ struct DarkBackground<S: Shape>: View {
                     .fill(Color.darkEnd)
                     .shadow(color: Color.darkStart, radius: 10, x: 5, y: 5)
                     .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
-
+                
             } else {
                 shape
                     .fill(Color.darkEnd)
@@ -84,6 +84,18 @@ struct DarkBackground<S: Shape>: View {
 }
 
 
+
+struct DarkButtonStyle: ButtonStyle{
+    func makeBody(configuration:Self.Configuration) -> some View{
+        configuration.label
+            .padding(30)
+            .contentShape(Circle())
+            .background(
+                DarkBackground(isHighlighted: configuration.isPressed, shape: Circle())
+                
+        )
+    }
+}
 struct ContentView: View {
     var body: some View {
         ZStack{
@@ -96,7 +108,7 @@ struct ContentView: View {
                 Image(systemName:"heart.fill")
                     .foregroundColor(.gray)
             }
-            .buttonStyle(SimpleButtonStyle())
+            .buttonStyle(DarkButtonStyle())
             
         }
         .edgesIgnoringSafeArea(.all)
