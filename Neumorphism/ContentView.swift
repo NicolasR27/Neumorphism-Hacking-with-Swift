@@ -16,7 +16,7 @@ extension Color {
     static let darkEnd = Color(red: 25/255, green: 25/555, blue:30/255 )
     
     static let lightStart = Color(red: 60 / 255, green: 160 / 255, blue: 240 / 255)
-       static let lightEnd = Color(red: 30 / 255, green: 80 / 255, blue: 120 / 255)
+    static let lightEnd = Color(red: 30 / 255, green: 80 / 255, blue: 120 / 255)
     
 }
 
@@ -73,18 +73,18 @@ struct DarkBackground<S: Shape>: View {
         ZStack {
             if isHighlighted {
                 shape
-                    .fill(LinearGradient(Color.darkEnd,Color.darkStart))
-                    .overlay(shape.stroke(LinearGradient(Color.darkStart,Color.darkEnd),lineWidth: 4))
+                    .fill(LinearGradient(Color.red,Color.darkStart))
+                    .overlay(shape.stroke(LinearGradient(Color.darkStart,Color.red),lineWidth: 4))
                     .shadow(color: Color.darkStart, radius: 10, x: 5, y: 5)
                     .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
                 
             } else {
                 shape
-                    .fill(LinearGradient(Color.darkStart,Color.darkEnd))
-                    .overlay(shape.stroke(Color.darkEnd,lineWidth: 4))
+                    .fill(LinearGradient(Color.darkStart,Color.red))
+                    .overlay(shape.stroke(Color.pink,lineWidth: 4))
                     
-                    .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
-                    .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
+                    .shadow(color: Color.blue, radius: 10, x: -10, y: -10)
+                    .shadow(color: Color.red, radius: 10, x: 10, y: 10)
             }
         }
     }
@@ -93,7 +93,7 @@ struct DarkBackground<S: Shape>: View {
 struct ColorfulBackground<S: Shape>: View {
     var isHighlighted: Bool
     var shape: S
-
+    
     var body: some View {
         ZStack {
             if isHighlighted {
@@ -104,10 +104,10 @@ struct ColorfulBackground<S: Shape>: View {
                     .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
             } else {
                 shape
-                    .fill(LinearGradient(Color.darkStart, Color.darkEnd))
-                    .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
-                    .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
-                    .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
+                    .fill(LinearGradient(Color.red, Color.darkEnd))
+                    .overlay(shape.stroke(LinearGradient(Color.blue, Color.lightEnd), lineWidth: 4))
+                    .shadow(color: Color.red, radius: 10, x: -10, y: -10)
+                    .shadow(color: Color.blue, radius: 10, x: 10, y: 10)
             }
         }
     }
